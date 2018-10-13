@@ -16,7 +16,8 @@ install:
   - sudo apt-get install -qq g++-6
   - sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-6 90
   # Qt5
-  - sudo apt-get install -qq libqt5webkit5-dev qtdeclarative5-dev libqt5svg5* libqt5chart* libqt5quick*
+  - sudo apt-get install -qq libqt5webkit5-dev qtdeclarative5-dev libqt5svg5* 
+  - sudo apt install libqt5charts5 libqt5charts5-dev
   - export QMAKE=/usr/lib/x86_64-linux-gnu/qt5/bin/qmake
   # Qt5 SVG
   - sudo apt-get install libqt5svg5-dev
@@ -65,3 +66,6 @@ script:
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
+
+after_fail:
+  - sudo apt-get update && apt-cache search qt5
